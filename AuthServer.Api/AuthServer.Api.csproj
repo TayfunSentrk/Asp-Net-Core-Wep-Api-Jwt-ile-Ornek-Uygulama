@@ -14,4 +14,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Asp Net Core Wep Api Jwt ile Örnek Uygulama.Service\Asp Net Core Wep Api Jwt ile Örnek Uygulama.Service.csproj" />
+    <ProjectReference Include="..\SharedLibrary\SharedLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
