@@ -10,8 +10,8 @@ namespace Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Core.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Price { get; set; }
-        public string Stock { get; set; }
+        public Decimal Price { get; set; }
+        public int Stock { get; set; }
         public string UserId { get; set; }
     }
 }
