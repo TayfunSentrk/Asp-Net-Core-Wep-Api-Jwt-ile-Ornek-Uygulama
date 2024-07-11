@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asp Net Core Wep Api Jwt il
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asp Net Core Wep Api Jwt ile Örnek Uygulama.Data", "Asp Net Core Wep Api Jwt ile Örnek Uygulama.Data\Asp Net Core Wep Api Jwt ile Örnek Uygulama.Data.csproj", "{1CD31D18-D947-4963-881B-B1831603C8A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asp Net Core Wep Api Jwt ile Örnek Uygulama.Service", "Asp Net Core Wep Api Jwt ile Örnek Uygulama.Service\Asp Net Core Wep Api Jwt ile Örnek Uygulama.Service.csproj", "{18FF91A9-B1C0-45A0-9DD0-E204F84FAC6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1CD31D18-D947-4963-881B-B1831603C8A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CD31D18-D947-4963-881B-B1831603C8A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CD31D18-D947-4963-881B-B1831603C8A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18FF91A9-B1C0-45A0-9DD0-E204F84FAC6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18FF91A9-B1C0-45A0-9DD0-E204F84FAC6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18FF91A9-B1C0-45A0-9DD0-E204F84FAC6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18FF91A9-B1C0-45A0-9DD0-E204F84FAC6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
