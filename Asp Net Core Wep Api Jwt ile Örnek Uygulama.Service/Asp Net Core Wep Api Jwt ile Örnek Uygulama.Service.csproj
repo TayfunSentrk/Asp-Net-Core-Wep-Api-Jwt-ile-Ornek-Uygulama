@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Asp Net Core Wep Api Jwt ile Örnek Uygulama.Data\Asp Net Core Wep Api Jwt ile Örnek Uygulama.Data.csproj" />
+  </ItemGroup>
+
 </Project>
