@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniApp1.Api", "MiniApp1.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniApp2.API", "MiniApp2.API\MiniApp2.API.csproj", "{F85D355E-CD44-4526-8225-A1A2BB3EFB61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniApp3.Api", "MiniApp3.Api\MiniApp3.Api.csproj", "{B354D940-7CA4-49AE-A791-707D91D67B14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F85D355E-CD44-4526-8225-A1A2BB3EFB61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F85D355E-CD44-4526-8225-A1A2BB3EFB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F85D355E-CD44-4526-8225-A1A2BB3EFB61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B354D940-7CA4-49AE-A791-707D91D67B14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B354D940-7CA4-49AE-A791-707D91D67B14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B354D940-7CA4-49AE-A791-707D91D67B14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B354D940-7CA4-49AE-A791-707D91D67B14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
