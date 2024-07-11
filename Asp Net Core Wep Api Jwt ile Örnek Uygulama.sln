@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthServer.Api", "AuthServer.Api\AuthServer.Api.csproj", "{6D313FF1-17E3-4925-BF2C-4C01027281ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asp Net Core Wep Api Jwt ile Örnek Uygulama.Core", "Asp Net Core Wep Api Jwt ile Örnek Uygulama.Core\Asp Net Core Wep Api Jwt ile Örnek Uygulama.Core.csproj", "{DFDB556D-2D85-4130-B016-1153769DEEE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6D313FF1-17E3-4925-BF2C-4C01027281ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D313FF1-17E3-4925-BF2C-4C01027281ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D313FF1-17E3-4925-BF2C-4C01027281ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFDB556D-2D85-4130-B016-1153769DEEE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFDB556D-2D85-4130-B016-1153769DEEE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFDB556D-2D85-4130-B016-1153769DEEE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFDB556D-2D85-4130-B016-1153769DEEE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
