@@ -6,6 +6,7 @@ using Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Core.UnitOfWork;
 using Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Data;
 using Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Data.Repositories;
 using Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Service.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SharedLibrary.Configurations;
@@ -19,7 +20,30 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<CustomTokenOptions>(builder.Configuration.GetSection("TokenOptions"));//CustomTokensOptions'dll olarak istediðim yerde geçebilirim.Ýlgili datalarý section yapýsýndan alýcak
+
+
 builder.Services.Configure<List<Client>>(builder.Configuration.GetSection("Clients"));//bu client herhangi bir dll constructor'da eriþmek için
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;// 1tane üyelik sistemi uygulamak için bunu yaptým
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>  //burda claim yerine jsonwebtoken kullanýyorum
+{
+    var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<CustomTokenOptions>();// customtokenoptionsu aldým bunu validation Issuer kýsmýnda kullanýcam
+    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+    {
+        ValidIssuer = tokenOptions.Issuer,  //EÐER BU token daðýtan servis mi deðil mi kontrol etmek için
+        ValidAudience = tokenOptions.Audiences[0], // BURDAN BÝRDEN FAZLA DÝZÝ VAR FAKAT birincisi yeterli,
+        IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),//BURDA security key'in setlenmesi
+        ValidateIssuerSigningKey = true,//imza doðrulanmasý lazým
+        ValidateAudience = true, //burda yetkisi olan yerler doðrulamal
+        ValidateIssuer = true, //tokený kým saðlýyor onu kontrol etmek
+        ValidateLifetime = true,//ömrünü kontrol etmek için
+        ClockSkew=TimeSpan.Zero // tüm serverlerde ayný olmasý için
+
+    };
+});
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
