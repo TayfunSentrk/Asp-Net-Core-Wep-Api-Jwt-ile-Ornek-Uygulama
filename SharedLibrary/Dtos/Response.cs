@@ -26,7 +26,7 @@ namespace SharedLibrary.Dtos
             };
         }
 
-        public static Response<T> Sucess(int statusCode)
+        public static Response<T> Success(int statusCode)
         {
             return new Response<T>() { Data = default, StatusCode = statusCode,IsSuccesful=true };// başarılı olması durumunda datayı dönmüyorum.Default değer verip boş bir değer verildi
         }
