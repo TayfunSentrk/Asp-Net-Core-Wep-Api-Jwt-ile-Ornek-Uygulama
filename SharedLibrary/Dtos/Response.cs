@@ -31,7 +31,7 @@ namespace SharedLibrary.Dtos
             return new Response<T>() { Data = default, StatusCode = statusCode,IsSuccesful=true };// başarılı olması durumunda datayı dönmüyorum.Default değer verip boş bir değer verildi
         }
 
-        public Response<T> Fail(ErrorDto dto, int statusCode)  //birden fazla hata olması durumunda 
+        public static Response<T> Fail(ErrorDto dto, int statusCode)  //birden fazla hata olması durumunda 
         {
             return new Response<T>() { StatusCode = statusCode, Error = dto,IsSuccesful=false };
 
