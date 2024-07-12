@@ -18,7 +18,7 @@ namespace Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Core.Services
 
         Task<Response<NoDataDto>> RevokeRefreshToken(string refreshToken); // burda refresh tokenı sonlandırmak için refresh token alınır null'e set etmek için
 
-        Task<Response<ClientTokenDto>> CreateTokenByClient(ClientLoginDto clientLoginDto); //Clientler için üyelik olmadan client id ve secrete göre clienttokendto dönülür
+        Response<ClientTokenDto> CreateTokenByClient(ClientLoginDto clientLoginDto); //Clientler için üyelik olmadan client id ve secrete göre clienttokendto dönülür
 
 
 

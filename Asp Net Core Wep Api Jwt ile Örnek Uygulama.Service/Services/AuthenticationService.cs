@@ -88,9 +88,25 @@ namespace Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Service.Services
             return Response<TokenDto>.Success(token, 200);
         }
 
-        public Task<Response<ClientTokenDto>> CreateTokenByClient(ClientLoginDto clientLoginDto)
+
+
+        /// <summary>
+        /// clientLoginDto parametresine göre eğer başarılı ise ClientTokenDto döner
+        /// </summary>
+        /// <param name="clientLoginDto">Eklenmek istenen nesne ilgili bilgileri içeren veri transfer nesnesi.</param>
+        /// <returns>Asenkron işlemi temsil eden bir görev. Görev sonucunda ClientTokenDto Döner.Eğer client doğru şekilde giriş yaparsa access tokeni oluşturulur.</returns>
+
+        public Response<ClientTokenDto> CreateTokenByClient(ClientLoginDto clientLoginDto)
         {
-            throw new NotImplementedException();
+            var client = _client.SingleOrDefault(x => x.Id == clientLoginDto.ClientId && x.Secred == clientLoginDto.ClientSecret);
+            if (client == null)
+            {
+                return Response<ClientTokenDto>.Fail("client ıd veya client secret bulunamadı",404,isShow: true);
+            }
+
+            var token=_tokenService.CreateTokenByClient(client);
+
+            return Response<ClientTokenDto>.Success(token,200);
         }
 
         public Task<Response<TokenDto>> CreateTokenByRefreshToken(string refreshToken)
