@@ -12,6 +12,6 @@ namespace Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Core.Services
     public interface ITokenService
     {
         TokenDto CreateToken(UserApp user); //user vererek tokenın kime ait olduunu belirliyoruz
-        ClientTokenDto CreateTokenByClient(Client client)
+        ClientTokenDto CreateTokenByClient(Client client);
     }
 }
