@@ -109,9 +109,33 @@ namespace Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Service.Services
             return Response<ClientTokenDto>.Success(token,200);
         }
 
-        public Task<Response<TokenDto>> CreateTokenByRefreshToken(string refreshToken)
+
+        /// <summary>
+        /// refreshToken parametresine göre eğer başarılı ise TokenDto döner
+        /// </summary>
+        /// <param name="refreshToken">Eklenmek istenen nesne ilgili bilgileri içeren veri transfer nesnesi.</param>
+        /// <returns>Asenkron işlemi temsil eden bir görev. Görev sonucunda TokenDto Döner.Eğer parametre verilen refreh token doğru ve token'a ait kullanıcı var ise refresh token revize edilir.Veritabanında güncellenir.</returns>
+        public async Task<Response<TokenDto>> CreateTokenByRefreshToken(string refreshToken)
         {
-            throw new NotImplementedException();
+            var existRefreshToken = await userRefreshTokenService.Where(x => x.Code == refreshToken).SingleOrDefaultAsync();
+            if (existRefreshToken == null)
+            {
+                return Response<TokenDto>.Fail("Refresh Token bulunamadı",404, isShow: true);   
+            }
+
+            var user = await _userManager.FindByIdAsync(existRefreshToken.UserId);
+
+            if(user == null)
+            {
+                return Response<TokenDto>.Fail("User Id bulunamadı", 404, isShow: true);
+            }
+
+            var tokenDto=_tokenService.CreateToken(user);
+
+            existRefreshToken.Code = tokenDto.RefreshToken;
+            existRefreshToken.Expiration = tokenDto.RefreshTokenExpiration;
+            await unitofWork.CommitAsync();
+            return Response<TokenDto>.Success(tokenDto, 200);
         }
 
         public Task<Response<NoDataDto>> RevokeRefreshToken(string refreshToken)
