@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<CustomTokenOptions>(builder.Configuration.GetSection("TokenOptions"));//CustomTokensOptions'dll olarak istediðim yerde geçebilirim.Ýlgili datalarý section yapýsýndan alýcak
-builder.Services.Configure<Client>(builder.Configuration.GetSection("Clients"));//bu client herhangi bir dll constructor'da eriþmek için
+builder.Services.Configure<List<Client>>(builder.Configuration.GetSection("Clients"));//bu client herhangi bir dll constructor'da eriþmek için
 
 var app = builder.Build();
 
