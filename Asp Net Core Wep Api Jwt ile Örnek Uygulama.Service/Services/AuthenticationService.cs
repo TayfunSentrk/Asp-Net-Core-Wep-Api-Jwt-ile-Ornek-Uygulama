@@ -138,9 +138,25 @@ namespace Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Service.Services
             return Response<TokenDto>.Success(tokenDto, 200);
         }
 
-        public Task<Response<NoDataDto>> RevokeRefreshToken(string refreshToken)
+        /// <summary>
+        /// refreshToken parametresine göre eğer başarılı ise NoDataDto döner
+        /// </summary>
+        /// <param name="refreshToken">Eklenmek istenen nesne ilgili bilgileri içeren veri transfer nesnesi.</param>
+        /// <returns>Asenkron işlemi temsil eden bir görev. Görev sonucunda NoDataDto Döner.Eğer parametre verilen refreh token doğru ise veritabanından silinir.</returns>
+
+        public async Task<Response<NoDataDto>> RevokeRefreshToken(string refreshToken)
         {
-            throw new NotImplementedException();
+
+            var existRefreshToken = await userRefreshTokenService.Where(x => x.Code == refreshToken).SingleOrDefaultAsync();
+
+            if (existRefreshToken == null)
+            {
+                return Response<NoDataDto>.Fail("Refresh Token bulunamadı", 404, isShow: true);
+            }
+
+            userRefreshTokenService.Remove(existRefreshToken);
+            await unitofWork.CommitAsync();
+            return Response<NoDataDto>.Success(200);
         }
     }
 }
