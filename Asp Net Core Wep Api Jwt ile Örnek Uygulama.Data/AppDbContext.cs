@@ -34,6 +34,7 @@ namespace Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfigurationsFromAssembly(GetType().Assembly);//burda ıEntityType Configrationları bulup uygular
             base.OnModelCreating(builder);
         }
     }
