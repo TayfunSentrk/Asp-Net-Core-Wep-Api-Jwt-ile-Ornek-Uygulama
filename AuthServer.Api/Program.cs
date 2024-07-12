@@ -1,3 +1,4 @@
+using Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Core.Configration;
 using SharedLibrary.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<CustomTokenOptions>(builder.Configuration.GetSection("TokenOptions"));//CustomTokensOptions'dll olarak istediðim yerde geçebilirim.Ýlgili datalarý section yapýsýndan alýcak
+builder.Services.Configure<Client>(builder.Configuration.GetSection("Clients"));//bu client herhangi bir dll constructor'da eriþmek için
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
