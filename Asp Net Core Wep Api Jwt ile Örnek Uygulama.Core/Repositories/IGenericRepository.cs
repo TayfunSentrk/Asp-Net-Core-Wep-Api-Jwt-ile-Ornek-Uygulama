@@ -19,7 +19,7 @@ namespace Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Core.Repositories
 
         void Remove(T entity); //Ürün Silme 
 
-        Task<T> Update(T entity);//Ürün Güncelleme
+        T Update(T entity);//Ürün Güncelleme
 
     }
 }
