@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Asp Net Core Wep Api Jwt ile Örnek Uygulama.Data\Asp Net Core Wep Api Jwt ile Örnek Uygulama.Data.csproj" />
   </ItemGroup>
 
