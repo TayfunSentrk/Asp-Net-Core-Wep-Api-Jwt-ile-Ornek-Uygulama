@@ -39,8 +39,8 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,//imza doðrulanmasý lazým
         ValidateAudience = true, //burda yetkisi olan yerler doðrulamal
         ValidateIssuer = true, //tokený kým saðlýyor onu kontrol etmek
-        ValidateLifetime = true,//ömrünü kontrol etmek için
-        ClockSkew=TimeSpan.Zero // tüm serverlerde ayný olmasý için
+        ValidateLifetime = true//ömrünü kontrol etmek için
+        //ClockSkew=TimeSpan.Zero // tüm serverlerde ayný olmasý için
 
     };
 });
@@ -76,10 +76,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseAuthentication();
+
 
 app.MapControllers();
 

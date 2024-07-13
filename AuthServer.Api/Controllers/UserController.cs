@@ -17,12 +17,6 @@ namespace AuthServer.Api.Controllers
             this.userService = userService;
         }
 
-        /// <summary>
-        /// clientLoginDto parametresine göre eğer başarılı ise Başarılı olup olmamasını döner
-        /// </summary>
-        /// <param name="clientLoginDto">Token oluşturmak nesne ilgili bilgileri içeren veri transfer nesnesi.</param>
-        /// <returns>Asenkron işlemi temsil eden bir görev. Görev sonucunda başarılı olup olmamasını döner.clientLoginDto ait veriler ile token oluşturulır.</returns>
-        ///
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserDto createUserDto)
         {
@@ -43,6 +37,7 @@ namespace AuthServer.Api.Controllers
 
         public async Task<IActionResult> GetUser()
         {
+            var userName = HttpContext.User.Identity.Name;
             return ActionResultInstance(await userService.GetUserByName(HttpContext.User.Identity.Name));
         }
 

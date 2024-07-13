@@ -9,6 +9,6 @@ namespace Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Core.Models
 {
     public class UserApp:IdentityUser
     {
-        public string City { get; set; }
+        public string? City { get; set; } = default;
     }
 }

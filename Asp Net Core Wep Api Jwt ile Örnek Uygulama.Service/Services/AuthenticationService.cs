@@ -68,7 +68,7 @@ namespace Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Service.Services
                 return Response<TokenDto>.Fail("Email ya da password yanlış", 400, isShow: true); //client hata olduğu için 400 hatası verdim.
             }
 
-            var token = _tokenService.CreateToken(user);
+            var token =  _tokenService.CreateToken(user);
 
             var userRefreshToken = await userRefreshTokenService.Where(x => x.UserId == user.Id).SingleOrDefaultAsync(); //refresh token var mı yok mu onu kontrol ediyorum
 
