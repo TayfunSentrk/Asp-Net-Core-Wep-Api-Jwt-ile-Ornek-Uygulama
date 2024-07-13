@@ -6,6 +6,7 @@ using Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Core.UnitOfWork;
 using Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Data;
 using Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Data.Repositories;
 using Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Service.Services;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -63,7 +64,13 @@ builder.Services.AddAuthentication(options =>
 
     };
 });
-builder.Services.AddControllers();
+//Býrda fluentvalidationa controllere ekledik.Assembly diyerek program class'ýnýn assembly ulaþarak validatorlerin aktif hale gelmesi saðlandý
+builder.Services.AddControllers().AddFluentValidation(opt =>
+{
+    opt.RegisterValidatorsFromAssemblyContaining<Program>();
+}
+    );
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
