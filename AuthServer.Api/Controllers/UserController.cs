@@ -37,7 +37,7 @@ namespace AuthServer.Api.Controllers
 
         public async Task<IActionResult> GetUser()
         {
-            var userName = HttpContext.User.Identity.Name;
+           
             return ActionResultInstance(await userService.GetUserByName(HttpContext.User.Identity.Name));
         }
 

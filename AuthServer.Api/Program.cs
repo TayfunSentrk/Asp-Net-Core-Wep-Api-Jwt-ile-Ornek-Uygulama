@@ -14,11 +14,29 @@ using SharedLibrary.Configurations;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+//generic olduðu için typeof kullandýk
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//Generic yapý kullandýk fakat iki tane entity alacaðý için virgül koyduk
+builder.Services.AddScoped(typeof(IServiceGeneric<,>), typeof(GenericService<,>));
+builder.Services.AddScoped<IUnitofWork, UnitOfWork>();
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"), sqlOptions =>
+    {
+        sqlOptions.MigrationsAssembly("Asp Net Core Wep Api Jwt ile Örnek Uygulama.Data"); //burda migration assembly'data oluþturdum çünkü api assembly kirletmesin
+    });
+});
+
+builder.Services.AddIdentity<UserApp, IdentityRole>(options =>
+{
+    options.User.RequireUniqueEmail = true; //her bir mailin unique olmasýný saðladým
+    options.Password.RequireNonAlphanumeric = false; // * ? gibi ifadeleri zorunlu olmasýný engelledim
+}).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders(); //þifre sýfýrlamada token üretmek için yaptým
+
 builder.Services.Configure<CustomTokenOptions>(builder.Configuration.GetSection("TokenOptions"));//CustomTokensOptions'dll olarak istediðim yerde geçebilirim.Ýlgili datalarý section yapýsýndan alýcak
 
 
@@ -44,28 +62,12 @@ builder.Services.AddAuthentication(options =>
 
     };
 });
-builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<ITokenService, TokenService>();
-//generic olduðu için typeof kullandýk
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-//Generic yapý kullandýk fakat iki tane entity alacaðý için virgül koyduk
-builder.Services.AddScoped(typeof(IServiceGeneric<,>), typeof(GenericService<,>));
-builder.Services.AddScoped<IUnitofWork,UnitOfWork>();
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"), sqlOptions =>
-    {
-        sqlOptions.MigrationsAssembly("Asp Net Core Wep Api Jwt ile Örnek Uygulama.Data"); //burda migration assembly'data oluþturdum çünkü api assembly kirletmesin
-    });
-});
 
-builder.Services.AddIdentity<UserApp, IdentityRole>(options =>
-{
-    options.User.RequireUniqueEmail = true; //her bir mailin unique olmasýný saðladým
-    options.Password.RequireNonAlphanumeric = false; // * ? gibi ifadeleri zorunlu olmasýný engelledim
-}).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders(); //þifre sýfýrlamada token üretmek için yaptým
 var app = builder.Build(); 
 
 // Configure the HTTP request pipeline.

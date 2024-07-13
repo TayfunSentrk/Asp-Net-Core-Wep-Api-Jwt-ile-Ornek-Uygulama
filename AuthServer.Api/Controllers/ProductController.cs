@@ -25,7 +25,7 @@ namespace AuthServer.Api.Controllers
         /// <summary>
         /// Başarılı olması durumunda Productları döner
         /// </summary>
-        /
+        
         /// <returns>Asenkron işlemi temsil eden bir görev. Görev sonucunda başarılı olması durumunda product listesini döner.</returns>
 
         [HttpGet]
@@ -67,8 +67,8 @@ namespace AuthServer.Api.Controllers
         /// </summary>
         /// <param name=")">Token oluşturmak nesne ilgili bilgileri içeren veri transfer nesnesi.</param>
         /// <returns>Asenkron işlemi temsil eden bir görev. Görev sonucunda başarılı olursa veritabanı product nesnesini siler.</returns>
-
-        [HttpDelete]
+        //api/product/id  bunu query stringten almamak için yaptık
+        [HttpDelete("{id}")]
 
         public async Task<IActionResult> DeleteProduct(int id)
         {
