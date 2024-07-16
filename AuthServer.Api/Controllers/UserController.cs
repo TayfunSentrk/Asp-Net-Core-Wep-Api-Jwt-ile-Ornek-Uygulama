@@ -3,6 +3,7 @@ using Asp_Net_Core_Wep_Api_Jwt_ile_Örnek_Uygulama.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SharedLibrary.Exceptions;
 
 namespace AuthServer.Api.Controllers
 {
@@ -20,7 +21,7 @@ namespace AuthServer.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserDto createUserDto)
         {
-
+            throw new CustomExceptions("veri tabanı ilgili bir hata meydana gelsiidssdds");
             return ActionResultInstance(await userService.CreateUserAsync(createUserDto));
         }
 

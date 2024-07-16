@@ -89,6 +89,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+else
+{
+    // en üst middleware yerleþtirdim.production ortamýnda çünkü
+    app.UseCustomException();
+}
+//bunu ben görmek için buraya yine yazdým.Hatayý middleware buraya yazmanýnýn sebebi diðer middleware gitmesin
+app.UseCustomException();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
