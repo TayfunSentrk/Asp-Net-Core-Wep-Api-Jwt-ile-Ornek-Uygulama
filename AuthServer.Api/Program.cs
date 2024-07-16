@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SharedLibrary.Configurations;
 using SharedLibrary.Services;
+using SharedLibrary.Extensions;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -64,6 +66,7 @@ builder.Services.AddAuthentication(options =>
 
     };
 });
+
 //Býrda fluentvalidationa controllere ekledik.Assembly diyerek program class'ýnýn assembly ulaþarak validatorlerin aktif hale gelmesi saðlandý
 builder.Services.AddControllers().AddFluentValidation(opt =>
 {
@@ -71,6 +74,7 @@ builder.Services.AddControllers().AddFluentValidation(opt =>
 }
     );
 
+builder.Services.UseCustomValidationResponse();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
